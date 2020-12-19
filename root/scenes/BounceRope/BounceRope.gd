@@ -6,13 +6,31 @@ export var min_coef: float = 0.5
 export var max_coef: float = 1.5
 
 var bounce_coef: float = 1.0
+var shader_displacement = Vector2.ZERO
 
 onready var _Line = $Line2D
 onready var _Shape = $CollisionShape2D
 
+func _process(delta):
+	_Line.material.set_shader_param("displacement", shader_displacement)
+
 func _on_Shibastronaut_bounce_on(node):
 	if node == self:
-		pass
+		$CollisionShape2D.set_deferred("disabled", true)
+		var tween = $Tween
+		tween.interpolate_property(
+			self,"shader_displacement",
+			Vector2(0.0, 10.0), Vector2.ZERO,
+			0.2
+		)
+		tween.interpolate_property(
+			_Line,"modulate:a",
+			1.0, 0.0,
+			0.5
+		)
+		if !tween.is_active():
+			tween.start()
+		$Timer.start()
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("Player")
@@ -41,3 +59,6 @@ func end(pos: Vector2):
 func calculate_bounce_coef(length: float) -> float:
 	var base = 1.0 - clamp(length/(max_length - min_length), 0, 1)
 	return lerp(min_coef, max_coef, base)
+
+func _on_Timer_timeout():
+	queue_free()

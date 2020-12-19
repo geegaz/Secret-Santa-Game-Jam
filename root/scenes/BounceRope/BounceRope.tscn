@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/BounceRope/BounceRope.gd" type="Script" id=1]
+[ext_resource path="res://assets/shaders/displace.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/displacement = Vector2( 0, 0 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.493884, 0.514493 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [node name="BounceRope" type="KinematicBody2D" groups=[
 "Bounce",
@@ -12,10 +20,19 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
+material = SubResource( 1 )
 points = PoolVector2Array( 0, 0, 0, 0 )
+width_curve = SubResource( 2 )
+default_color = Color( 0.180392, 0.705882, 0.898039, 1 )
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 sharp_limit = 1.0
 round_precision = 6
 antialiased = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

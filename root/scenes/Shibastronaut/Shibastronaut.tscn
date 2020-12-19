@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Shibastronaut/Shibastronaut.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/Shiba/Shiba_helmet.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/Shiba/Shiba_body.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/Shiba/Shiba_full.png" type="Texture" id=2]
+[ext_resource path="res://assets/shaders/grow_rotate.shader" type="Shader" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 24.0
+radius = 40.0
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/grow = Vector2( 0, 0 )
+shader_param/rotate = 0.0
 
 [node name="Shibastronaut" type="KinematicBody2D" groups=[
 "Player",
@@ -17,10 +22,9 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Shiba_body" type="Sprite" parent="."]
-position = Vector2( 1.43051e-06, -1.43051e-06 )
-scale = Vector2( 0.046875, 0.046875 )
-texture = ExtResource( 3 )
-
-[node name="Shiba_helmet" type="Sprite" parent="Shiba_body"]
-scale = Vector2( 1, 1 )
+material = SubResource( 2 )
+position = Vector2( 4.76837e-07, -1.90735e-06 )
+scale = Vector2( 0.078125, 0.078125 )
 texture = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

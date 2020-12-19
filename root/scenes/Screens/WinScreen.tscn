@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/title_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/main_theme.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/Screens/WinScreen.gd" type="Script" id=3]
+
+[node name="WinScreen" type="Control"]
+margin_right = 576.0
+margin_bottom = 1024.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 576.0
+margin_bottom = 1024.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 576.0
+margin_bottom = 1024.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 576.0
+margin_bottom = 510.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
+margin_left = 115.0
+margin_top = 133.0
+margin_right = 461.0
+margin_bottom = 376.0
+custom_fonts/font = ExtResource( 1 )
+text = "Level 
+Finished !"
+align = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 514.0
+margin_right = 576.0
+margin_bottom = 1024.0
+size_flags_vertical = 3
+
+[node name="Continue" type="Button" parent="VBoxContainer/CenterContainer2"]
+margin_left = 227.0
+margin_top = 232.0
+margin_right = 348.0
+margin_bottom = 278.0
+text = "Continue"
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="VBoxContainer/CenterContainer2/Continue" to="." method="_on_Continue_pressed"]

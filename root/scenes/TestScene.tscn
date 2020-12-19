@@ -1,19 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/Shibastronaut/Shibastronaut.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Game/Game.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/TerrainWalls.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/TouchController/TouchController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Game.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Shibastronaut/Shibastronaut.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Screens/GameOverScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Screens/WinScreen.tscn" type="PackedScene" id=6]
 
 [node name="TestScene" type="Node"]
 
 [node name="TouchController" parent="." instance=ExtResource( 3 )]
 
-[node name="Game" type="Node2D" parent="."]
-script = ExtResource( 4 )
+[node name="Game" parent="." instance=ExtResource( 1 )]
+terrain_path = NodePath("Terrain")
 
-[node name="Shibastronaut" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( 288, 384 )
+[node name="Terrain" type="Node2D" parent="Game"]
+
+[node name="Shibastronaut" parent="Game/Terrain" instance=ExtResource( 4 )]
+position = Vector2( 288, 816 )
+
+[node name="TerrainWalls" parent="." instance=ExtResource( 2 )]
+
+[node name="GameOverScreen" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="WinScreen" parent="." instance=ExtResource( 6 )]
 [connection signal="dragged" from="TouchController" to="Game" method="_on_TouchController_dragged"]
 [connection signal="start_pressing" from="TouchController" to="Game" method="_on_TouchController_start_pressing"]
 [connection signal="stop_pressing" from="TouchController" to="Game" method="_on_TouchController_stop_pressing"]
-[connection signal="start" from="Game" to="Game/Shibastronaut" method="_on_Game_start"]
+[connection signal="lose" from="Game" to="GameOverScreen" method="_on_Game_lose"]
+[connection signal="shiba_start" from="Game" to="Game/Terrain/Shibastronaut" method="_on_Game_shiba_start"]
+[connection signal="shiba_stop" from="Game" to="Game/Terrain/Shibastronaut" method="_on_Game_shiba_stop"]
+[connection signal="win" from="Game" to="WinScreen" method="_on_Game_win"]
+[connection signal="advance" from="TerrainWalls" to="Game" method="_on_TerrainWalls_advance"]
+[connection signal="lose" from="TerrainWalls" to="Game" method="_on_TerrainWalls_lose"]
+[connection signal="goto_scene" from="GameOverScreen" to="Game" method="goto_scene"]
+[connection signal="goto_scene" from="WinScreen" to="Game" method="goto_scene"]

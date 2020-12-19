@@ -1,20 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/TouchController/TouchController.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/Grid.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float amount: hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 col = texture(TEXTURE, UV);
+	col.a = mix(0.0, col.a, clamp(UV.y-amount, 0.0, 1.0));
+	COLOR = col;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/amount = 0.0
 
 [node name="TouchController" type="ReferenceRect"]
 margin_right = 576.0
 margin_bottom = 1024.0
-editor_only = false
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Rect" type="TextureRect" parent="."]
-margin_top = 512.0
+material = SubResource( 2 )
+margin_top = 264.0
 margin_right = 576.0
 margin_bottom = 1024.0
+texture = ExtResource( 2 )
+stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

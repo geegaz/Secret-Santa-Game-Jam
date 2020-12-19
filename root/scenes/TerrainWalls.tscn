@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/TerrainWalls.gd" type="Script" id=2]
+
+[sub_resource type="SegmentShape2D" id=1]
+b = Vector2( 0, 1024 )
+
+[sub_resource type="SegmentShape2D" id=2]
+b = Vector2( 0, 1024 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 288, 32 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 288, 32 )
+
+[node name="TerrainWalls" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="BouncyWalls" type="StaticBody2D" parent="." groups=[
+"Wall",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BouncyWalls"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BouncyWalls"]
+position = Vector2( 576, 0 )
+shape = SubResource( 2 )
+
+[node name="DeathZone" type="Area2D" parent="." groups=[
+"Hazard",
+]]
+position = Vector2( 288, 1056 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+shape = SubResource( 3 )
+
+[node name="AdvanceZone" type="Area2D" parent="." groups=[
+"Advance",
+]]
+position = Vector2( 288, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AdvanceZone"]
+shape = SubResource( 4 )
+[connection signal="body_entered" from="DeathZone" to="." method="_on_DeathZone_body_entered"]
+[connection signal="body_entered" from="AdvanceZone" to="." method="_on_AdvanceZone_body_entered"]
