@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Shibastronaut/Shibastronaut.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/Shiba/Shiba_helmet.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/Shiba/Shiba_body.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.0
+
+[node name="Shibastronaut" type="KinematicBody2D" groups=[
+"Player",
+]]
+collision_mask = 3
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Shiba_body" type="Sprite" parent="."]
+position = Vector2( 1.43051e-06, -1.43051e-06 )
+scale = Vector2( 0.046875, 0.046875 )
+texture = ExtResource( 3 )
+
+[node name="Shiba_helmet" type="Sprite" parent="Shiba_body"]
+scale = Vector2( 1, 1 )
+texture = ExtResource( 2 )
