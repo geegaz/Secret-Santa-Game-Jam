@@ -28,10 +28,7 @@ func disappear():
 		tween.start()
 
 func _on_Continue_pressed():
-	emit_signal("goto_scene", "")
+	emit_signal("goto_scene", "menu")
 
-func _on_Game_win():
+func _on_Terrain_win():
 	appear()
-
-
-

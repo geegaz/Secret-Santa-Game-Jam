@@ -33,5 +33,5 @@ func _on_Restart_pressed():
 func _on_BackToMenu_pressed():
 	emit_signal("goto_scene", "menu")
 
-func _on_Game_lose():
+func _on_TerrainWalls_lose():
 	appear()

@@ -16,11 +16,18 @@ _global_script_class_icons={
 [application]
 
 config/name="Bouncy Shibastronaut"
+run/main_scene="res://scenes/Main.tscn"
+boot_splash/image="res://assets/sprites/secret_santa_jam_logo.png"
+boot_splash/bg_color=Color( 1, 0.945098, 0.909804, 1 )
 config/icon="res://icon.png"
 
 [audio]
 
 driver=""
+
+[autoload]
+
+Global="*res://scenes/Global.gd"
 
 [display]
 
@@ -35,7 +42,6 @@ window/stretch/aspect="keep"
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=false
 
 [rendering]
 

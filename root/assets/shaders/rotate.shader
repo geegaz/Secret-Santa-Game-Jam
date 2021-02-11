@@ -21,3 +21,8 @@ void vertex() {
 	float rot = (sin(TIME*speed + offset) * PI * degree) + PI/2.0;
 	VERTEX = rotateUVmatrix(VERTEX, 0.5/TEXTURE_PIXEL_SIZE, rot);
 }
+
+void fragment() {
+	vec4 color = texture(TEXTURE,UV);
+	COLOR = vec4(vec3(1.0),color.a);
+}

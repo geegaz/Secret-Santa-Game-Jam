@@ -2,8 +2,6 @@ extends Node2D
 
 signal shiba_start
 signal shiba_stop
-signal lose
-signal win
 
 export var terrain_path: NodePath
 onready var _Terrain = get_node(terrain_path)
@@ -11,14 +9,14 @@ onready var _UI = $UI
 
 var playing: bool = false
 
-var line_scene = preload("res://scenes/BounceRope/BounceRope.tscn")
+var line_scene = preload("res://scenes/GameObjects/BounceRope/BounceRope.tscn")
 var start_drag_pos: Vector2
 var end_drag_pos: Vector2
 var min_drag_distance = 5 #pixels
 var temp_line
 
-var screens: int = 1
-var current_screen: int = 0
+var tutorial = true
+
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -47,31 +45,31 @@ func _on_TouchController_stop_pressing(pos, pressed_time):
 		
 		emit_signal("shiba_start")
 		
+		if tutorial:
+			tutorial = false
+			$AnimationPlayer.stop()
+			$Sprite2.hide()
+		
 	elif temp_line:
 		temp_line.queue_free()
 
 
-func _on_TerrainWalls_advance():
+func _on_Terrain_advance():
 	emit_signal("shiba_stop")
+
+	for line in get_tree().get_nodes_in_group("Bounce"):
+		line.queue_free()
 	
-	if current_screen == screens:
-		emit_signal("win")
-		
-	else:
-		for line in get_tree().get_nodes_in_group("Bounce"):
-			line.queue_free()
-		
-		var tween = $Tween
-		tween.interpolate_property(
-			_Terrain, "position:y",
-			_Terrain.position.y, _Terrain.position.y + 512,
-			1.0
-		)
-		if !tween.is_active():
-			tween.start()
-		
-		current_screen += 1
-		_UI.reload_charges()
+	var tween = $Tween
+	tween.interpolate_property(
+		_Terrain, "position:y",
+		_Terrain.position.y, 512*(_Terrain.current_screen),
+		1.0
+	)
+	if !tween.is_active():
+		tween.start()
+	
+	_UI.reload_charges()
 
 func _on_TerrainWalls_lose():
 	emit_signal("lose")
@@ -79,6 +77,9 @@ func _on_TerrainWalls_lose():
 func goto_scene(scene_path):
 	match scene_path:
 		"menu":
-			pass
+			get_tree().change_scene("res://scenes/Main.tscn")
 		_:
 			get_tree().reload_current_scene()
+
+func _on_Terrain_win():
+	emit_signal("shiba_stop")

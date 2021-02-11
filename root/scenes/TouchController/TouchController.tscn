@@ -37,4 +37,3 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="gui_input" from="." to="." method="_on_TouchController_gui_input"]

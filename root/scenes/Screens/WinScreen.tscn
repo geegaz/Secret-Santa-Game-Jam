@@ -13,9 +13,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="ColorRect" parent="."]
 margin_right = 576.0
 margin_bottom = 1024.0
+color = Color( 0, 0, 0, 0.498039 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 576.0
@@ -27,13 +28,13 @@ margin_bottom = 510.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer"]
-margin_left = 115.0
+margin_left = 60.0
 margin_top = 133.0
-margin_right = 461.0
+margin_right = 515.0
 margin_bottom = 376.0
 custom_fonts/font = ExtResource( 1 )
-text = "Level 
-Finished !"
+text = "Reached the
+top !"
 align = 1
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
@@ -43,11 +44,11 @@ margin_bottom = 1024.0
 size_flags_vertical = 3
 
 [node name="Continue" type="Button" parent="VBoxContainer/CenterContainer2"]
-margin_left = 227.0
-margin_top = 232.0
-margin_right = 348.0
-margin_bottom = 278.0
-text = "Continue"
+margin_left = 48.0
+margin_top = 225.0
+margin_right = 526.02
+margin_bottom = 285.0
+text = "Back to Menu"
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="VBoxContainer/CenterContainer2/Continue" to="." method="_on_Continue_pressed"]

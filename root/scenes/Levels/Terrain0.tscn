@@ -1,0 +1,569 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/GameObjects/WinGoal/WinGoal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/GameObjects/Shibastronaut/Shibastronaut.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Levels/Terrain.gd" type="Script" id=3]
+[ext_resource path="res://scenes/GameObjects/Obstacles/Obstacle0.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/Moon.png" type="Texture" id=6]
+
+[sub_resource type="ArrayMesh" id=1]
+surfaces/0 = {
+"aabb": AABB( -440.5, -162.5, 0, 881, 325, 0 ),
+"array_data": PoolByteArray( 0, 64, 220, 67, 0, 0, 14, 195, 0, 0, 128, 63, 121, 46, 129, 61, 52, 51, 183, 67, 0, 0, 0, 63, 214, 119, 106, 63, 211, 100, 0, 63, 102, 230, 181, 67, 0, 0, 0, 63, 109, 182, 105, 63, 211, 100, 0, 63, 154, 89, 138, 67, 0, 0, 169, 66, 55, 103, 80, 63, 92, 143, 66, 63, 0, 192, 136, 67, 0, 0, 169, 66, 44, 121, 79, 63, 92, 143, 66, 63, 104, 102, 15, 67, 0, 128, 21, 67, 69, 171, 41, 63, 143, 194, 117, 63, 52, 51, 10, 67, 0, 128, 21, 67, 115, 40, 40, 63, 143, 194, 117, 63, 104, 102, 110, 66, 0, 128, 34, 67, 137, 81, 17, 63, 0, 0, 128, 63, 104, 102, 189, 194, 0, 128, 34, 67, 224, 246, 200, 62, 0, 0, 128, 63, 0, 128, 34, 195, 204, 76, 23, 67, 214, 143, 161, 62, 135, 45, 119, 63, 0, 128, 34, 195, 204, 76, 20, 67, 214, 143, 161, 62, 148, 208, 116, 63, 0, 192, 145, 195, 154, 153, 160, 66, 93, 47, 45, 62, 111, 64, 63, 63, 0, 192, 145, 195, 102, 102, 155, 66, 93, 47, 45, 62, 37, 52, 61, 63, 0, 64, 187, 195, 96, 102, 230, 192, 248, 108, 153, 61, 65, 168, 244, 62, 0, 64, 187, 195, 0, 0, 40, 193, 248, 108, 153, 61, 94, 117, 239, 62, 0, 64, 220, 195, 154, 25, 10, 195, 0, 0, 0, 0, 238, 193, 153, 61, 0, 64, 220, 195, 0, 128, 34, 195, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 220, 67, 0, 128, 34, 195, 0, 0, 128, 63, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 17, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 4, 0, 5, 0, 6, 0, 6, 0, 7, 0, 8, 0, 8, 0, 9, 0, 10, 0, 10, 0, 11, 0, 12, 0, 12, 0, 13, 0, 14, 0, 14, 0, 15, 0, 16, 0, 16, 0, 17, 0, 1, 0, 2, 0, 4, 0, 6, 0, 6, 0, 8, 0, 10, 0, 10, 0, 12, 0, 14, 0, 14, 0, 16, 0, 1, 0, 2, 0, 6, 0, 10, 0, 14, 0, 1, 0, 2, 0, 2, 0, 10, 0, 14, 0 ),
+"blend_shape_data": [  ],
+"format": 262417,
+"index_count": 48,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 18
+}
+
+[node name="Terrain" type="Node2D"]
+z_index = -1
+script = ExtResource( 3 )
+screens = 14
+
+[node name="Sprite" type="MeshInstance2D" parent="."]
+position = Vector2( 288, -6608 )
+scale = Vector2( 0.5, 0.5 )
+mesh = SubResource( 1 )
+texture = ExtResource( 6 )
+
+[node name="ScreensRef" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="ScreensRef"]
+margin_right = 576.0
+margin_bottom = 512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -512.0
+margin_right = 576.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -1024.0
+margin_right = 576.0
+margin_bottom = -512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect4" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -1536.0
+margin_right = 576.0
+margin_bottom = -1024.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect5" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -2048.0
+margin_right = 576.0
+margin_bottom = -1536.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect6" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -2560.0
+margin_right = 576.0
+margin_bottom = -2048.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect7" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -3072.0
+margin_right = 576.0
+margin_bottom = -2560.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect8" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -3584.0
+margin_right = 576.0
+margin_bottom = -3072.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect9" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -4096.0
+margin_right = 576.0
+margin_bottom = -3584.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect10" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -4608.0
+margin_right = 576.0
+margin_bottom = -4096.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect11" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -5120.0
+margin_right = 576.0
+margin_bottom = -4608.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect12" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -5632.0
+margin_right = 576.0
+margin_bottom = -5120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect13" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -6144.0
+margin_right = 576.0
+margin_bottom = -5632.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect14" type="ReferenceRect" parent="ScreensRef"]
+margin_top = -6656.0
+margin_right = 576.0
+margin_bottom = -6144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shibastronaut" parent="." instance=ExtResource( 2 )]
+position = Vector2( 288, 672 )
+
+[node name="WinGoal" parent="." instance=ExtResource( 1 )]
+position = Vector2( 288, 232 )
+
+[node name="WinGoal2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 480, -416 )
+
+[node name="WinGoal4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 288, -1440 )
+
+[node name="WinGoal5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 160, -1960 )
+
+[node name="WinGoal6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 488, -2400 )
+
+[node name="WinGoal7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 96, -2976 )
+
+[node name="WinGoal8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 296, -3480 )
+
+[node name="WinGoal9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 352, -4000 )
+
+[node name="WinGoal10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 136, -4368 )
+
+[node name="WinGoal12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 168, -5472 )
+
+[node name="WinGoal13" parent="." instance=ExtResource( 1 )]
+position = Vector2( 296, -6064 )
+
+[node name="WinGoal14" parent="." instance=ExtResource( 1 )]
+position = Vector2( 288, -6528 )
+rotation = 2.87979
+
+[node name="WinGoal11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 416, -5016 )
+
+[node name="WinGoal3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 96, -928 )
+
+[node name="Obstacle0" parent="." instance=ExtResource( 4 )]
+position = Vector2( 184, 55.9999 )
+scale = Vector2( 0.157816, 0.123855 )
+
+[node name="Obstacle1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 408, -176 )
+rotation = -0.785397
+scale = Vector2( 0.115243, 0.152918 )
+
+[node name="Obstacle2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 136, -408 )
+rotation = 1.0472
+scale = Vector2( 0.182218, 0.128868 )
+
+[node name="Obstacle5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 384, -920 )
+rotation = -0.261799
+scale = Vector2( 0.209638, 0.12863 )
+
+[node name="Obstacle11" parent="." instance=ExtResource( 4 )]
+position = Vector2( 536, -1312 )
+rotation = -0.261799
+scale = Vector2( 0.209638, 0.12863 )
+
+[node name="Obstacle6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, -1240 )
+rotation = 1.0472
+scale = Vector2( 0.0577802, 0.0706919 )
+
+[node name="Obstacle7" parent="." instance=ExtResource( 4 )]
+position = Vector2( 232, -1248 )
+rotation = 1.0472
+scale = Vector2( 0.182218, 0.128868 )
+
+[node name="Obstacle8" parent="." instance=ExtResource( 4 )]
+position = Vector2( 256, -1128 )
+rotation = 1.0472
+scale = Vector2( 0.0818089, 0.0753126 )
+
+[node name="Obstacle12" parent="." instance=ExtResource( 4 )]
+position = Vector2( 296, -1912 )
+rotation = -0.261799
+scale = Vector2( 0.0818089, 0.0753126 )
+
+[node name="Obstacle18" parent="." instance=ExtResource( 4 )]
+position = Vector2( 384, -2480 )
+rotation = -0.261799
+scale = Vector2( 0.0818089, 0.0753126 )
+
+[node name="Obstacle17" parent="." instance=ExtResource( 4 )]
+position = Vector2( 192, -2232 )
+rotation = 0.785397
+scale = Vector2( 0.0818089, 0.0753126 )
+
+[node name="Obstacle23" parent="." instance=ExtResource( 4 )]
+position = Vector2( 576, -2984 )
+rotation = 0.785397
+scale = Vector2( 0.0818089, 0.0753126 )
+
+[node name="Obstacle25" parent="." instance=ExtResource( 4 )]
+position = Vector2( 304, -3168 )
+rotation = 0.785397
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle31" parent="." instance=ExtResource( 4 )]
+position = Vector2( -6.10352e-05, -3968 )
+rotation = 0.785397
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle40" parent="." instance=ExtResource( 4 )]
+position = Vector2( 160, -4192 )
+rotation = 0.261799
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle48" parent="." instance=ExtResource( 4 )]
+position = Vector2( 408, -4616 )
+rotation = 0.261799
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle49" parent="." instance=ExtResource( 4 )]
+position = Vector2( 408, -4912 )
+rotation = 0.261799
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle66" parent="." instance=ExtResource( 4 )]
+position = Vector2( 112, -5648 )
+rotation = 0.261799
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle69" parent="." instance=ExtResource( 4 )]
+position = Vector2( 576, -5528 )
+rotation = 0.261799
+scale = Vector2( 0.13201, 0.140125 )
+
+[node name="Obstacle67" parent="." instance=ExtResource( 4 )]
+position = Vector2( 122.358, -5600 )
+rotation = 0.261799
+scale = Vector2( 0.101172, 0.0824162 )
+
+[node name="Obstacle68" parent="." instance=ExtResource( 4 )]
+position = Vector2( 272, -5528 )
+rotation = 2.35619
+scale = Vector2( 0.0735902, 0.148767 )
+
+[node name="Obstacle58" parent="." instance=ExtResource( 4 )]
+position = Vector2( 424, -5672 )
+rotation = 0.261799
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle61" parent="." instance=ExtResource( 4 )]
+position = Vector2( 416, -6088 )
+rotation = 0.261799
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle59" parent="." instance=ExtResource( 4 )]
+position = Vector2( 88, -6432 )
+rotation = 0.261799
+scale = Vector2( 0.0538583, 0.0520557 )
+
+[node name="Obstacle13" parent="." instance=ExtResource( 4 )]
+position = Vector2( -4.48227e-05, -1784 )
+rotation = 1.0472
+scale = Vector2( 0.13976, 0.141228 )
+
+[node name="Obstacle14" parent="." instance=ExtResource( 4 )]
+position = Vector2( 288, -1688 )
+rotation = 1.0472
+scale = Vector2( 0.13976, 0.141228 )
+
+[node name="Obstacle15" parent="." instance=ExtResource( 4 )]
+position = Vector2( 568, -2152 )
+rotation = -0.261799
+scale = Vector2( 0.216768, 0.214012 )
+
+[node name="Obstacle28" parent="." instance=ExtResource( 4 )]
+position = Vector2( 328, -3712 )
+rotation = -0.261799
+scale = Vector2( 0.216768, 0.214012 )
+
+[node name="Obstacle44" parent="." instance=ExtResource( 4 )]
+position = Vector2( 320, -4680 )
+rotation = -0.261799
+scale = Vector2( 0.216768, 0.214012 )
+
+[node name="Obstacle64" parent="." instance=ExtResource( 4 )]
+position = Vector2( 544, -5216 )
+rotation = 0.261799
+scale = Vector2( 0.167534, 0.180434 )
+
+[node name="Obstacle50" parent="." instance=ExtResource( 4 )]
+position = Vector2( 376, -6248 )
+rotation = -0.261799
+scale = Vector2( 0.216768, 0.214012 )
+
+[node name="Obstacle51" parent="." instance=ExtResource( 4 )]
+position = Vector2( 232, -5800 )
+rotation = 2.35619
+scale = Vector2( 0.216768, 0.214012 )
+
+[node name="Obstacle16" parent="." instance=ExtResource( 4 )]
+position = Vector2( 144, -2320 )
+rotation = -0.261799
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle19" parent="." instance=ExtResource( 4 )]
+position = Vector2( 432, -2720 )
+rotation = -0.261799
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle26" parent="." instance=ExtResource( 4 )]
+position = Vector2( -6.10352e-05, -3576 )
+rotation = -0.261799
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle30" parent="." instance=ExtResource( 4 )]
+position = Vector2( 280, -3848 )
+rotation = -0.261799
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle35" parent="." instance=ExtResource( 4 )]
+position = Vector2( 144, -4096 )
+rotation = -0.261799
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle36" parent="." instance=ExtResource( 4 )]
+position = Vector2( 336, -4328 )
+rotation = 0.523598
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle46" parent="." instance=ExtResource( 4 )]
+position = Vector2( 176, -4904 )
+rotation = 0.523598
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle62" parent="." instance=ExtResource( 4 )]
+position = Vector2( 352, -5352 )
+rotation = 0.523598
+scale = Vector2( 0.139041, 0.140685 )
+
+[node name="Obstacle54" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, -5912 )
+rotation = -1.309
+scale = Vector2( 0.114302, 0.123216 )
+
+[node name="Obstacle60" parent="." instance=ExtResource( 4 )]
+position = Vector2( 424, -6381.82 )
+rotation = -1.309
+scale = Vector2( 0.114302, 0.123216 )
+
+[node name="Obstacle56" parent="." instance=ExtResource( 4 )]
+position = Vector2( 122.358, -6336 )
+rotation = -1.309
+scale = Vector2( 0.114302, 0.123216 )
+
+[node name="Obstacle57" parent="." instance=ExtResource( 4 )]
+position = Vector2( 16.0001, -6488 )
+scale = Vector2( 0.139435, 0.141354 )
+
+[node name="Obstacle20" parent="." instance=ExtResource( 4 )]
+position = Vector2( 136, -2752 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle24" parent="." instance=ExtResource( 4 )]
+position = Vector2( 272, -3216 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle34" parent="." instance=ExtResource( 4 )]
+position = Vector2( 48, -3800 )
+rotation = 0.523598
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle29" parent="." instance=ExtResource( 4 )]
+position = Vector2( 224, -3784 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle37" parent="." instance=ExtResource( 4 )]
+position = Vector2( 280, -4392 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle47" parent="." instance=ExtResource( 4 )]
+position = Vector2( 576, -4904 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle65" parent="." instance=ExtResource( 4 )]
+position = Vector2( 328, -5440 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle70" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1.43051e-06, -5536 )
+rotation = -4.18878
+scale = Vector2( 0.144394, 0.18718 )
+
+[node name="Obstacle45" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, -4816 )
+rotation = -0.523598
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle63" parent="." instance=ExtResource( 4 )]
+position = Vector2( 464, -5136 )
+rotation = -0.523598
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle71" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, -5256 )
+rotation = -0.523598
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle52" parent="." instance=ExtResource( 4 )]
+position = Vector2( 144, -5712 )
+rotation = -0.523598
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle53" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3.05176e-05, -5920 )
+rotation = -1.0472
+scale = Vector2( 0.108082, 0.132757 )
+
+[node name="Obstacle55" parent="." instance=ExtResource( 4 )]
+position = Vector2( 560, -5960 )
+rotation = -2.87979
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle42" parent="." instance=ExtResource( 4 )]
+position = Vector2( 288, -4240 )
+rotation = -0.261799
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle41" parent="." instance=ExtResource( 4 )]
+position = Vector2( 216, -4160 )
+rotation = -2.87979
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle38" parent="." instance=ExtResource( 4 )]
+position = Vector2( 120, -4512 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle39" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -4224 )
+rotation = -1.57079
+scale = Vector2( 0.0818648, 0.0852041 )
+
+[node name="Obstacle21" parent="." instance=ExtResource( 4 )]
+position = Vector2( 48.0002, -2824 )
+rotation = 0.523598
+scale = Vector2( -0.177413, 0.111203 )
+
+[node name="Obstacle27" parent="." instance=ExtResource( 4 )]
+position = Vector2( 568, -3400 )
+rotation = -0.785397
+scale = Vector2( -0.177413, 0.111203 )
+
+[node name="Obstacle33" parent="." instance=ExtResource( 4 )]
+position = Vector2( 496, -3976 )
+rotation = -0.785397
+scale = Vector2( -0.177413, 0.111203 )
+
+[node name="Obstacle43" parent="." instance=ExtResource( 4 )]
+position = Vector2( 568, -4480 )
+rotation = -0.523598
+scale = Vector2( -0.177413, 0.111203 )
+
+[node name="Obstacle22" parent="." instance=ExtResource( 4 )]
+position = Vector2( 200, -3288 )
+rotation = -0.523598
+scale = Vector2( 0.15559, 0.117998 )
+
+[node name="Obstacle32" parent="." instance=ExtResource( 4 )]
+position = Vector2( -0.000146151, -3880 )
+rotation = 0.785397
+scale = Vector2( 0.15559, 0.117998 )
+
+[node name="Obstacle9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 16.0001, -1392 )
+rotation = 0.785397
+scale = Vector2( 0.115983, 0.0818534 )
+
+[node name="Obstacle10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, -784 )
+rotation = 1.0472
+scale = Vector2( 0.0749653, 0.0559364 )
+
+[node name="Obstacle3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 136, -512 )
+rotation = -0.261799
+scale = Vector2( 0.103199, 0.0686761 )
+
+[node name="Obstacle4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 360, -600 )
+rotation = -0.261799
+scale = Vector2( 0.103199, 0.0686761 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 288, 672 )
+[connection signal="advance" from="WinGoal" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal2" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal4" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal5" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal6" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal7" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal8" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal9" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal10" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal12" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal13" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal14" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal11" to="." method="_on_WinGoal_advance"]
+[connection signal="advance" from="WinGoal3" to="." method="_on_WinGoal_advance"]

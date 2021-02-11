@@ -14,7 +14,7 @@ func _physics_process(delta):
 	if pressed:
 		pressed_time += delta
 
-func _on_TouchController_gui_input(event):
+func _input(event):
 	var clamped_pos = Vector2()
 	clamped_pos.x = clamp(event.position.x, limits.position.x, limits.end.x)
 	clamped_pos.y = clamp(event.position.y, limits.position.y, limits.end.y)
